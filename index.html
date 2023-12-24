@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Save The Potato</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding: 0;
+          margin: 0;
+          background-color: #f0f0f0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+        }
+        .container {
+          max-width: 800px;
+          padding: 20px;
+          text-align: center;
+          display: grid;
+          grid-gap: 20px;
+          justify-items: center;
+          align-content: center;
+        }
+        .logo img {
+          width: 30%;
+        }
+        .screenshots {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 20px;
+        }
+        .screenshots img {
+          max-width: 100%;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+        }
+        .links {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          gap: 10px;
+        }
+        .links img {
+          width: 120px;
+        }
+        .privacy {
+          margin: 20px 0;
+        }
+        @media screen and (max-width: 600px) {
+          .links {
+            flex-direction: column;
+          }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Welcome to Save The Potato!</h2>
+    <div class="logo">
+        <img src="assets/logo.png" alt="Save The Potato logo">
+    </div>
+    <div class="links">
+        <a href="https://play.google.com/store/apps/details?id=dev.app2pack.savethepotato" target="_blank"><img
+                src="assets/google-play.svg" alt="Get it on Google Play"></a>
+        <a href="https://apps.apple.com/app/save-the-potato/6474765181" target="_blank"><img
+                src="assets/app-store.svg" alt="Download on the App Store"></a>
+    </div>
+    <p>Chill and thrill in a quest to save the potato!</p>
+    <div class="screenshots">
+        <img src="https://github.com/app2pack-dev/ttg_web/blob/main/assets/screenshots/screen1.png?raw=true"
+             alt="TTG Screenshot 1">
+        <img src="https://github.com/app2pack-dev/ttg_web/blob/main/assets/screenshots/screen2.png?raw=true"
+             alt="TTG Screenshot 2">
+        <img src="https://github.com/app2pack-dev/ttg_web/blob/main/assets/screenshots/screen3.png?raw=true"
+             alt="TTG Screenshot 3">
+    </div>
+    <div class="privacy">
+        <a href="privacy.html" target="_blank">Privacy Policy</a>
+    </div>
+</div>
+</body>
+</html>
