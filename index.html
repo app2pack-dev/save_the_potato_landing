@@ -61,8 +61,10 @@
         }
         .screenshots {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
           gap: 20px;
+          max-width: 660px;
+          margin: 0 auto; /* To center the grid horizontally */
         }
         .screenshots img {
           max-width: 100%;
@@ -86,11 +88,15 @@
             flex-direction: column;
           }
         }
+        .rounded-iframe {
+          border-radius: 14px; /* Adjust the value to control the roundness */
+          overflow: hidden; /* Ensure content within the iframe stays within rounded borders */
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>Welcome to Save The Potato!</h2>
+    <h2>Save The Potato</h2>
     <div class="logo">
         <img src="assets/logo.png" alt="Save The Potato logo">
     </div>
@@ -104,6 +110,7 @@
                 src="assets/app-store.png" alt="Download on the App Store"></a>
     </div>
     <p>Chill and thrill in a quest to save the potato!</p>
+    <iframe width="660" height="370" class="rounded-iframe" src="https://www.youtube.com/embed/IuXIr0qrsvM?si=ZgwgmoSTdBjH6AMS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     <div class="screenshots">
         <img src="https://github.com/app2pack-dev/save_the_potato_landing/blob/main/assets/screenshots/screen1.png?raw=true"
              alt="TTG Screenshot 1">
