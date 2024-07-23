@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -26,8 +27,9 @@
     <h3>How We Protect Your Information</h3>
     <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information.</p>
     <p>&nbsp;</p>
-    <h3 id="account-deletion">Managing Your Information</h3>
+    <h3 id="account-deletion">Managing Your Account</h3>
     <p>If you wish to delete your account, please send a request to support@savethepotato.com. To process your request, signed-in users must send the email from the account associated with their user profile. If you are not signed in, please include a screenshot of the leaderboard page as proof of account ownership. We will respond to your request as quickly as possible.</p>
+    <button id="deleteAccountButton">Send email to delete account</button>
     <p>&nbsp;</p>
     <h3>Your Consent</h3>
     <p>By using our Game, you consent to our privacy policy.</p>
@@ -43,6 +45,12 @@
     <p>For more information on our open-source project and license, please visit:</p>
     <p><a href="https://github.com/imaNNeo/save_the_potato">Save The Potato on GitHub</a></p>
     <p><a href="https://github.com/imaNNeo/save_the_potato/blob/main/LICENSE.md">License Information</a></p>
+
+    <script>
+        document.getElementById("deleteAccountButton").addEventListener("click", function() {
+            window.location.href = "mailto:support@savethepotato.com?subject=Delete%20Account";
+        });
+    </script>
 </body>
 
 </html>
