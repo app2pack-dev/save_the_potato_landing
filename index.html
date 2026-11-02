@@ -56,20 +56,9 @@
           align-content: center;
         }
         .logo img {
-          width: 30%;
+          width: 220px;
+          max-width: 60vw;
           border-radius: 0;
-        }
-        .screenshots {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-          gap: 20px;
-          max-width: 660px;
-          margin: 0 auto; /* To center the grid horizontally */
-        }
-        .screenshots img {
-          max-width: 100%;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-          border-radius: 10px;
         }
         .links {
           display: flex;
@@ -95,10 +84,6 @@
             flex-direction: column;
           }
         }
-        .rounded-iframe {
-          border-radius: 14px; /* Adjust the value to control the roundness */
-          overflow: hidden; /* Ensure content within the iframe stays within rounded borders */
-        }
     </style>
 </head>
 <body>
@@ -114,15 +99,6 @@
                 src="assets/app-store.png" alt="Download on the App Store"></a>
     </div>
     <p>You have only one responsibility, save the potato!</p>
-    <iframe width="660" height="370" class="rounded-iframe" src="https://www.youtube.com/embed/IuXIr0qrsvM?si=ZgwgmoSTdBjH6AMS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    <div class="screenshots">
-        <img src="assets/screenshots/screen1.png"
-             alt="Save The Potato screenshot 1">
-        <img src="assets/screenshots/screen2.png"
-             alt="Save The Potato screenshot 2">
-        <img src="assets/screenshots/screen3.png"
-             alt="Save The Potato screenshot 3">
-    </div>
     <div class="privacy">
         <a href="privacy.html" target="_blank">Privacy Policy</a> | 
         <a href="https://github.com/imaNNeo/save_the_potato" target="_blank">Source Code</a>
