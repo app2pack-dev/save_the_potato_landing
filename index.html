@@ -1,108 +1,194 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Save The Potato</title>
 
-    <meta name="description" content="Embark on a journey to save the potato in this action-packed game. Play now and join the leaderboard!">
-    <meta name="keywords" content="Save The Potato, mobile game, action game, adventure game, potato game, flame engine, flutter, 2d game">
+    <meta name="description" content="Hold left or right to spin the fire and ice shields and keep every orb away from the potato. On Google Play and the App Store.">
+    <meta name="keywords" content="Save The Potato, mobile game, casual game, potato game, fire and ice, flame engine, flutter, 2d game">
     <meta name="author" content="App2Pack">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#01030F">
 
     <!-- Twitter Card data -->
-    <meta name="twitter:title" content="Chill and thrill in a quest to save the potato!">
-    <meta name="twitter:image:src" content="https://savethepotato.com/assets/banners/banner-1280x640.png" />
-    <meta name="twitter:site" content="@imaNNeo" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Save The Potato" />
-    <meta name="twitter:description" content="Save The Potato – Get ready for some non-stop, spin-tastic fun! Your goal? Keep our potato pal from turning into a hot tot or an ice cube" />
-
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@imaNNeo">
+    <meta name="twitter:title" content="Save The Potato">
+    <meta name="twitter:description" content="Hold left or right to spin the fire and ice shields and keep every orb away from the potato.">
+    <meta name="twitter:image" content="https://savethepotato.com/assets/banners/feature-graphic-1024x500.png">
 
     <!-- Open Graph data -->
-    <meta property="og:url" content="https://savethepotato.com" />
-    <meta property="og:site_name" content="Save The Potato" />
-    <meta property="og:type" content="object" />
-    <meta property="og:title" content="Save The Potato - Chill and thrill in a quest to save the potato!" />
-    <meta property="og:description" content="Save The Potato – Get ready for some non-stop, spin-tastic fun! Your goal? Keep our potato pal from turning into a hot tot or an ice cube" />
-    <meta property="og:image" content="https://savethepotato.com/assets/banners/banner-1280x640.png" />
-    <meta property="og:image:alt" content="Embark on a journey to save the potato in this action-packed game. Play now and join the leaderboard!" />
-    
+    <meta property="og:url" content="https://savethepotato.com">
+    <meta property="og:site_name" content="Save The Potato">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Save The Potato">
+    <meta property="og:description" content="Hold left or right to spin the fire and ice shields and keep every orb away from the potato.">
+    <meta property="og:image" content="https://savethepotato.com/assets/banners/feature-graphic-1024x500.png">
+    <meta property="og:image:alt" content="The potato with headphones between a fire shield and an ice shield">
+
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="./assets/logo-64x64.png" sizes="64x64">
     <link rel="icon" type="image/png" href="./assets/logo-32x32.png" sizes="32x32">
     <link rel="apple-touch-icon" href="./assets/logo-180x180.png">
-    
+
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.savethepotato.com">
-    
+    <link rel="canonical" href="https://savethepotato.com/">
+
+    <link rel="preload" href="assets/fonts/cookies.woff2" as="font" type="font/woff2" crossorigin>
     <style>
+        /* One quiet centered column floating on the game's own star sky */
+        @font-face {
+            font-family: "Cookies";
+            src: url("assets/fonts/cookies.woff2") format("woff2");
+            font-display: swap;
+        }
+        :root {
+            --sky: #01030F;
+            --ink: #F4F7FF;
+            --muted: #A9B8E8;
+            --star: #7FBBFF;
+            --fire: #FF7A1A;
+            --ice: #39B8FF;
+            --potato: #FFC46B;
+            --display: "Cookies", "Arial Rounded MT Bold", system-ui, sans-serif;
+            --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            color-scheme: dark;
+        }
+        * { box-sizing: border-box; }
+        html { background: var(--sky); }
         body {
-          font-family: Arial, sans-serif;
-          padding: 0;
-          margin: 0;
-          background-color: #010B31;
-          color: #fff;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-height: 100vh;
+            margin: 0;
+            background: var(--sky);
+            color: var(--ink);
+            font: 17px/1.6 var(--body);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        .container {
-          max-width: 800px;
-          padding: 20px;
-          text-align: center;
-          display: grid;
-          grid-gap: 20px;
-          justify-items: center;
-          align-content: center;
+        #sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; }
+        main, footer {
+            position: relative;
+            z-index: 1;
+            padding-left: max(16px, env(safe-area-inset-left, 0px));
+            padding-right: max(16px, env(safe-area-inset-right, 0px));
         }
-        .logo img {
-          width: 220px;
-          max-width: 60vw;
-          border-radius: 0;
+        .col { max-width: 760px; margin: 0 auto; display: grid; justify-items: center; text-align: center; }
+
+        .hero { padding-block: max(56px, env(safe-area-inset-top, 0px)) 24px; gap: 18px; }
+        .logo {
+            width: min(232px, 56vw);
+            height: auto;
+            aspect-ratio: 1;
+            animation: bob 4.8s ease-in-out infinite;
+            filter: drop-shadow(0 18px 40px rgba(0, 40, 140, .55));
         }
-        .links {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          gap: 10px;
+        @keyframes bob {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
-        .links img {
-          width: 160px;
+        h1 { font: 400 clamp(44px, 9vw, 84px)/1 var(--display); margin: 6px 0 0; text-wrap: balance; }
+        h1 span { color: var(--potato); }
+        .tag { margin: 0; color: var(--muted); font-size: clamp(17px, 2.4vw, 20px); max-width: 46ch; text-wrap: balance; }
+        .stores { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 10px; }
+        .stores a { display: block; border-radius: 12px; transition: transform .2s ease; }
+        .stores a:hover { transform: translateY(-3px) scale(1.03); }
+        .stores a:focus-visible { outline: 3px solid var(--star); outline-offset: 4px; }
+        .stores img { display: block; height: 54px; width: auto; }
+
+        .play { padding-block: 56px 24px; gap: 28px; }
+        .phone {
+            width: min(300px, 74vw);
+            aspect-ratio: 9 / 16;
+            border-radius: 34px;
+            padding: 10px;
+            background: linear-gradient(160deg, #2a3566, #0b1236 60%);
+            box-shadow: 0 0 0 1px rgba(127, 187, 255, .25), 0 30px 80px rgba(0, 0, 0, .55), 0 0 90px rgba(57, 120, 255, .25);
         }
-        .privacy {
-          margin: 20px 0;
+        .phone video { width: 100%; height: 100%; border-radius: 26px; object-fit: cover; display: block; background: #000; }
+        .how { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; color: var(--muted); font-weight: 600; text-align: left; }
+        .how li { display: flex; align-items: center; gap: 12px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+        .dot.f { background: var(--fire); box-shadow: 0 0 12px var(--fire); }
+        .dot.i { background: var(--ice); box-shadow: 0 0 12px var(--ice); }
+        .dot.s { background: var(--potato); box-shadow: 0 0 12px var(--potato); }
+
+        .shots { padding-block: 40px 16px; }
+        .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; width: 100%; max-width: 600px; }
+        .row img { width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 18px; display: block; box-shadow: 0 14px 34px rgba(0, 0, 0, .5); }
+
+        footer { padding-block: 40px max(32px, env(safe-area-inset-bottom, 0px)); text-align: center; color: var(--muted); font-size: 14px; }
+        footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-bottom: 10px; }
+        footer a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(127, 187, 255, .4); }
+        footer a:hover { border-color: var(--star); }
+
+        @media (max-width: 600px) {
+            /* Swipe through the screenshots instead of shrinking them */
+            .row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; padding: 4px 4px 18px; max-width: 100%; }
+            .row img { flex: 0 0 62vw; width: 62vw; scroll-snap-align: center; }
         }
-        .privacy a {
-          color: #9cc7ff;
+        @media (max-width: 420px) {
+            .stores img { height: 46px; }
         }
-        h2 {
-          font-size: 32px;
-          margin: 8px 0 0;
-        }
-        @media screen and (max-width: 600px) {
-          .links {
-            flex-direction: column;
-          }
+        @media (prefers-reduced-motion: reduce) {
+            .logo { animation: none; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <h2>Save The Potato</h2>
-    <div class="logo">
-        <img src="assets/logo.png" alt="Save The Potato logo">
-    </div>
-    <div class="links">
-        <a href="https://play.google.com/store/apps/details?id=dev.app2pack.savethepotato" target="_blank"><img
-                src="assets/google-play.png" alt="Get it on Google Play"></a>
-        <a href="https://apps.apple.com/app/save-the-potato/id6474765181" target="_blank"><img
-                src="assets/app-store.png" alt="Download on the App Store"></a>
-    </div>
-    <p>You have only one responsibility, save the potato!</p>
-    <div class="privacy">
-        <a href="privacy.html" target="_blank">Privacy Policy</a> | 
-        <a href="https://github.com/imaNNeo/save_the_potato" target="_blank">Source Code</a>
-    </div>
-</div>
+<canvas id="sky" aria-hidden="true"></canvas>
+<main>
+    <section class="col hero">
+        <img class="logo" src="assets/logo-512.webp" width="512" height="512" alt="Save The Potato logo: the potato between a fire shield and an ice shield">
+        <h1>Save the <span>Potato</span></h1>
+        <p class="tag">You have only one responsibility: save the potato!</p>
+        <div class="stores" id="stores">
+            <a href="https://play.google.com/store/apps/details?id=dev.app2pack.savethepotato" target="_blank" rel="noopener"><img src="assets/google-play.webp" width="183" height="54" alt="Get it on Google Play"></a>
+            <a href="https://apps.apple.com/app/save-the-potato/id6474765181" target="_blank" rel="noopener"><img src="assets/app-store.webp" width="183" height="54" alt="Download on the App Store"></a>
+        </div>
+    </section>
+
+    <section class="col play">
+        <div class="phone">
+            <video src="assets/video/gameplay.mp4" poster="assets/video/gameplay-poster.webp" autoplay muted loop playsinline aria-label="Gameplay: the potato's shields block fire and ice orbs"></video>
+        </div>
+        <ul class="how">
+            <li><span class="dot s"></span>Hold left or right to spin the shields</li>
+            <li><span class="dot f"></span>Fire blocks fire, ice blocks ice</li>
+            <li><span class="dot i"></span>Don't let an orb reach the potato</li>
+        </ul>
+    </section>
+
+    <section class="col shots">
+        <div class="row">
+            <img src="assets/screenshots/play-1.webp" width="540" height="960" loading="lazy" alt="A fire orb and an ice orb flying toward the potato">
+            <img src="assets/screenshots/play-2.webp" width="540" height="960" loading="lazy" alt="The shields blocking orbs around the potato">
+            <img src="assets/screenshots/play-3.webp" width="540" height="960" loading="lazy" alt="Orbs flying in from both sides">
+        </div>
+    </section>
+</main>
+<footer>
+    <nav>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="support.html">Support</a>
+        <a href="https://github.com/imaNNeo/save_the_potato" target="_blank" rel="noopener">Source Code</a>
+    </nav>
+    <div>Made with Flutter and Flame. Winner of Flame Jam 3.</div>
+</footer>
+<script src="assets/js/stars.js"></script>
+<script>
+    var sky = Stars.mount(document.getElementById('sky'), { background: '#00004D', stars: '#7FBBFF', center: [0, 0.35], glowSize: 0.6 });
+    // Hovering a store button sends the stars into warp
+    document.querySelectorAll('#stores a').forEach(function (a) {
+        function on() { sky.set({ power: 1, tension: 1 }); }
+        function off() { sky.set({ power: 0, tension: 0 }); }
+        a.addEventListener('pointerenter', on);
+        a.addEventListener('pointerleave', off);
+        a.addEventListener('focus', on);
+        a.addEventListener('blur', off);
+    });
+    // Keep the sky's glow behind the potato while scrolling
+    addEventListener('scroll', function () {
+        sky.set({ center: [0, 0.35 + Math.min(1, scrollY / innerHeight) * 0.6] });
+    }, { passive: true });
+</script>
 </body>
 </html>
